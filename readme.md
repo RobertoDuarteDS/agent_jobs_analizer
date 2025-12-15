@@ -12,7 +12,7 @@ pip install -r requirements.txt
 ## Ejecución
 
 ```bash
-uvicorn main:app --host localhost --port 8000 --reload
+uvicorn main:app --host localhost --port 8080 --reload
 ```
 
 Luego abrir en navegador: http://localhost:8080
