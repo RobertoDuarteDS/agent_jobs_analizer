@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Buscar en LinkedIn</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .container-main {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin: 25px 0;
+        }
+
+        .tech-option {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .tech-option input[type="checkbox"] {
+            display: none;
+        }
+
+        .tech-label {
+            display: block;
+            padding: 15px;
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .tech-option input[type="checkbox"]:checked + .tech-label {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: #667eea;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .tech-label:hover {
+            border-color: #667eea;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .btn-search {
+            width: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+
+        .btn-search:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-search:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading-state {
+            display: none;
+            text-align: center;
+        }
+
+        .loading-state .spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-state p {
+            color: #666;
+            margin: 0;
+        }
+
+        .selected-count {
+            text-align: center;
+            margin-top: 15px;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-label {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-main">
+        <div class="form-header">
+            <h1><i class="fas fa-search" style="margin-right: 10px; color: #667eea;"></i>Buscar Ofertas</h1>
+            <p>Selecciona las tecnologías que deseas buscar en LinkedIn</p>
+        </div>
+
+        <div style="text-align: right; margin-bottom: 20px;">
+            <a href="/historial" style="color: #667eea; text-decoration: none; font-weight: 600; font-size: 0.9rem;">
+                <i class="fas fa-history" style="margin-right: 5px;"></i>Ver Historial
+            </a>
+        </div>
+
+        <form id="initial_form">
+            <label class="form-label">
+                <i class="fas fa-code" style="margin-right: 8px;"></i>Tecnologías
+            </label>
+
+            <div class="tech-grid">
+                <div class="tech-option">
+                    <input type="checkbox" id="python" value="python" name="tech">
+                    <label for="python" class="tech-label">
+                        <i class="fab fa-python"></i><br>Python
+                    </label>
+                </div>
+
+                <div class="tech-option">
+                    <input type="checkbox" id="java" value="java" name="tech">
+                    <label for="java" class="tech-label">
+                        <i class="fab fa-java"></i><br>Java
+                    </label>
+                </div>
+
+                <div class="tech-option">
+                    <input type="checkbox" id="dotnet" value=".net" name="tech">
+                    <label for="dotnet" class="tech-label">
+                        <i class="fab fa-windows"></i><br>.NET
+                    </label>
+                </div>
+
+                <div class="tech-option">
+                    <input type="checkbox" id="devops" value="openshift" name="tech">
+                    <label for="devops" class="tech-label">
+                        <i class="fas fa-server"></i><br>OpenShift
+                    </label>
+                </div>
+
+                <div class="tech-option">
+                    <input type="checkbox" id="ia" value="inteligencia artificial" name="tech">
+                    <label for="ia" class="tech-label">
+                        <i class="fas fa-brain"></i><br>IA
+                    </label>
+                </div>
+
+                <div class="tech-option">
+                    <input type="checkbox" id="frontend" value="frontend (react, angular)" name="tech">
+                    <label for="frontend" class="tech-label">
+                        <i class="fas fa-laptop-code"></i><br>Frontend
+                    </label>
+                </div>
+            </div>
+
+            <div class="selected-count">
+                <span id="count">0 seleccionadas</span>
+            </div>
+
+            <button type="submit" class="btn-search" id="submit-btn">
+                <i class="fas fa-play" style="margin-right: 8px;"></i>Iniciar Búsqueda
+            </button>
+
+            <div class="loading-state" id="loading">
+                <div class="spinner"></div>
+                <p>Iniciando búsqueda en LinkedIn...</p>
+                <p style="font-size: 0.85rem; margin-top: 10px; color: #999;">Por favor, no cierres esta ventana</p>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Actualizar contador
+        function updateCount() {
+            const count = document.querySelectorAll('.tech-option input[type="checkbox"]:checked').length;
+            document.getElementById('count').textContent = count + (count === 1 ? ' seleccionada' : ' seleccionadas');
+        }
+
+        document.querySelectorAll('.tech-option input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', updateCount);
+        });
+
+        document.getElementById('initial_form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const selectedTechs = [];
+            document.querySelectorAll('.tech-option input[type="checkbox"]').forEach(checkbox => {
+                if (checkbox.checked) {
+                    selectedTechs.push(checkbox.value);
+                }
+            });
+            
+            if (selectedTechs.length === 0) {
+                alert('Por favor selecciona al menos una tecnología');
+                return;
+            }
+
+            console.log('Tecnologías seleccionadas:', selectedTechs);
+            
+            // Mostrar pantalla de búsqueda en proceso
+            document.body.innerHTML = `<div class='searching-box' style='background:white;border-radius:12px;padding:40px 60px;box-shadow:0 10px 40px rgba(0,0,0,0.2);text-align:center;max-width:400px;margin:80px auto;'>
+                <div class='spinner' style='display:inline-block;width:50px;height:50px;border:5px solid #f3f3f3;border-top:5px solid #667eea;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:20px;'></div>
+                <h2 style='color:#667eea;margin-bottom:10px;'>Búsqueda en proceso...</h2>
+                <p style='color:#555;'>Por favor, espera mientras se realiza la búsqueda y automatización en Comet.<br>No cierres esta ventana.</p>
+                <style>@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}</style>
+            </div>`;
+
+            let sessionId = null;
+            try {
+                const response = await fetch('/search-linkedin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        technologies: selectedTechs
+                    })
+                });
+                const data = await response.json();
+                if (data.session_id) {
+                    sessionId = data.session_id;
+                } else {
+                    alert('Error: ' + (data.error || 'Error desconocido'));
+                    window.location.reload();
+                    return;
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+                window.location.reload();
+                return;
+            }
+
+            // Polling para saber si el proceso terminó
+            async function checkStatus() {
+                try {
+                    const resp = await fetch(`/api/session-status/${sessionId}`);
+                    const status = await resp.json();
+                    if (status && status.completed) {
+                        document.body.innerHTML = `<div class='searching-box' style='background:white;border-radius:12px;padding:40px 60px;box-shadow:0 10px 40px rgba(0,0,0,0.2);text-align:center;max-width:400px;margin:80px auto;'>
+                            <div class='spinner' style='display:inline-block;width:50px;height:50px;border:5px solid #f3f3f3;border-top:5px solid #667eea;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:20px;'></div>
+                            <h2 style='color:#667eea;margin-bottom:10px;'>¡Proceso completado!</h2>
+                            <p style='color:#555;'>Las aplicaciones han sido guardadas correctamente.<br>Puedes cerrar esta ventana.</p>
+                            <style>@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}</style>
+                        </div>`;
+                    } else {
+                        setTimeout(checkStatus, 2000);
+                    }
+                } catch (e) {
+                    setTimeout(checkStatus, 3000);
+                }
+            }
+            checkStatus();
+        });
+    </script>
+</body>
+
+</html>

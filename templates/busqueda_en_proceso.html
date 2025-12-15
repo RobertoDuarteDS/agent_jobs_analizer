@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Búsqueda en proceso</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .searching-box {
+            background: white;
+            border-radius: 12px;
+            padding: 40px 60px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="searching-box">
+        <div class="spinner" id="spinner"></div>
+        <h2 id="status-title">Búsqueda en proceso...</h2>
+        <p id="status-msg">Por favor, espera mientras se realiza la búsqueda y automatización en Comet.<br>No cierres esta ventana.</p>
+    </div>
+    <script>
+        // Obtén el session_id de la URL (?session_id=...)
+        function getSessionId() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('session_id');
+        }
+        const sessionId = getSessionId();
+        async function checkStatus() {
+            if (!sessionId) return;
+            try {
+                const resp = await fetch(`/api/session-status/${sessionId}`);
+                const status = await resp.json();
+                if (status && status.completed) {
+                    document.getElementById('status-title').textContent = 'Búsqueda terminada';
+                    document.getElementById('status-msg').innerHTML = 'La búsqueda y automatización han finalizado correctamente.<br>Puedes cerrar esta ventana.';
+                    document.getElementById('spinner').style.display = 'none';
+                } else {
+                    setTimeout(checkStatus, 2000);
+                }
+            } catch (e) {
+                setTimeout(checkStatus, 3000);
+            }
+        }
+        checkStatus();
+    </script>
+</body>
+</html>

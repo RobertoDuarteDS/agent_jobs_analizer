@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Guardar Aplicaciones</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .container-form {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 650px;
+            width: 100%;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .instruction-box {
+            background: #e7f3ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+        }
+
+        .instruction-box h4 {
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .instruction-box ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .instruction-box li {
+            margin-bottom: 6px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            resize: vertical;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .help-text {
+            display: block;
+            color: #666;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .example-box {
+            background: #f8f9fa;
+            border-left: 3px solid #667eea;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: monospace;
+            color: #555;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .btn-save {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+
+        .btn-save:active {
+            transform: translateY(0);
+        }
+
+        .btn-back {
+            background: #f0f0f0;
+            color: #333;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-back:hover {
+            background: #e0e0e0;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .session-info {
+            background: #f0f7ff;
+            border-left: 3px solid #667eea;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        .session-info strong {
+            color: #667eea;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-form">
+        <div class="form-header">
+            <h1><i class="fas fa-list-check" style="margin-right: 10px; color: #667eea;"></i>Registrar Aplicaciones</h1>
+            <p>Ingresa los datos de las ofertas a las que aplicaste</p>
+        </div>
+
+        <div class="instruction-box">
+            <h4><i class="fas fa-info-circle" style="margin-right: 6px;"></i>¿Qué hacer aquí?</h4>
+            <ul>
+                <li>Comet ha buscado ofertas en LinkedIn con tus criterios</li>
+                <li>Ingresa los datos de TODAS las aplicaciones que realizó</li>
+                <li>Usa el formato: <strong>URL | Empresa | Título</strong></li>
+                <li>Una aplicación por línea</li>
+                <li>Presiona "Guardar" cuando termines</li>
+            </ul>
+        </div>
+
+        <div class="session-info">
+            <strong>📋 Session ID:</strong> {{ session_id }}
+        </div>
+
+        <form id="applicationForm">
+            <div class="form-group">
+                <label for="applicationsData">
+                    <i class="fas fa-file-lines" style="margin-right: 6px; color: #667eea;"></i>Listado de Aplicaciones
+                </label>
+                <textarea 
+                    id="applicationsData" 
+                    name="applications_data"
+                    placeholder="Pega aquí las URLs que buscaste..."
+                    required></textarea>
+                <div class="help-text">
+                    <strong>Formato:</strong> URL | Empresa | Título
+                </div>
+                <div class="example-box">
+                    <strong>Ejemplo:</strong><br>
+https://linkedin.com/jobs/123456 | Acme Corp | Python Developer<br>
+https://linkedin.com/jobs/789012 | TechCo Inc | Senior Engineer<br>
+https://linkedin.com/jobs/345678 | DataSys | DevOps Specialist
+                </div>
+            </div>
+
+            <input type="hidden" id="sessionId" name="session_id" value="{{ session_id }}">
+
+            <div class="button-group">
+                <button type="submit" class="btn-save">
+                    <i class="fas fa-save" style="margin-right: 6px;"></i>Guardar Aplicaciones
+                </button>
+                <a href="/historial" class="btn-back">
+                    <i class="fas fa-history"></i>Ver Historial
+                </a>
+            </div>
+        </form>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p style="margin-top: 10px; color: #666;">Guardando aplicaciones...</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('applicationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const sessionId = document.getElementById('sessionId').value;
+            const applicationsData = document.getElementById('applicationsData').value;
+            
+            if (!applicationsData.trim()) {
+                alert('Por favor ingresa al menos una aplicación');
+                return;
+            }
+            
+            document.getElementById('loading').style.display = 'block';
+            
+            try {
+                const response = await fetch('/api/save-applications-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        applications_data: applicationsData
+                    })
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert('✓ Aplicaciones guardadas correctamente: ' + result.count + ' registros');
+                    window.location.href = `/historial`;
+                } else {
+                    alert('Error: ' + (result.error || 'No se pudieron guardar'));
+                    document.getElementById('loading').style.display = 'none';
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+                document.getElementById('loading').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
