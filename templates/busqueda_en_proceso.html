@@ -63,6 +63,7 @@
                 const resp = await fetch(`/api/session-status/${sessionId}`);
                 const status = await resp.json();
                 if (status && status.completed) {
+                    document.getElementById('spinner').style.display = 'none';
                     document.getElementById('status-title').textContent = 'Búsqueda terminada';
                     document.getElementById('status-msg').innerHTML = 'La búsqueda y automatización han finalizado correctamente.<br>Puedes cerrar esta ventana.';
                     document.getElementById('spinner').style.display = 'none';
