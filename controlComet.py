@@ -231,123 +231,52 @@ FASE 1.5: VERIFICACIÓN DE RESULTADOS
   * SI HAY MÁS TECNOLOGÍAS: Vuelve a FASE 1 con la SIGUIENTE tecnología (sin hacer nada)
 - Si hay resultados: Continúa a FASE 2
 
-FASE 2: REVISIÓN Y APLICACIÓN A TODAS LAS OFERTAS
-IMPORTANTE: APLICAR A TODAS LAS VACANTES RELACIONADAS A LA TECNOLOGÍA ACTUAL
+FASE 2: REVISIÓN DE TODAS LAS OFERTAS
+Revisa maximo 5 ofertas de cada tecnología, debido a la limitación de tiempo.
 
 Para CADA oferta encontrada EN ESTA BÚSQUEDA:
    a) Verificar la empresa (IGNORAR si está en lista de bloqueadas)
    b) Leer el título y descripción rápidamente, si no es relacionada a la tecnología actual, SÁLTALA
-   c) Si es relacionada a la tecnología actual: APLICAR haciendo clic en "Easy Apply"
+   c) Si es relacionada a la tecnología actual: Ingresa y recopila información de la oferta de la siguiente manera:
+      *Título
+      *Empresa
+      *Descripción completa
+      *Requisitos
+      *“Nice to have”
+      *URL de la oferta
    d) Si NO es relacionada a la tecnología actual: Sáltala, continúa con la siguiente rápidamente
 
 CONTINUAR HASTA:
-   - Haber revisado y aplicado a TODAS las ofertas visibles de esta búsqueda
+   - Haber revisado y recopilado TODAS las ofertas visibles de esta búsqueda
    - NO hayas encontrado más ofertas nuevas después de scrollear
+   - Haber registrado TODAS las ofertas relevantes para esta tecnología (si son varias tecnologías, repetir el proceso para cada tecnología)
 
-FASE 3: SELECCIÓN DE CV Y RESPUESTA DE PREGUNTAS
-Cuando se abra el formulario de aplicación:
+FASE 3: SELECCIÓN DE CV
+Luego de haber recopilado la informacion de TODAS las ofertas relevantes de las tecnologias, se procede con lo siguiente:
 
-   A. SELECCIÓN DE CV:
-      IMPORTANTE - ANÁLISIS DE CV BASADO EN LA VACANTE:
-      - Lee el título de la oferta y los requisitos principales
-      - Identifica la tecnología principal solicitada:
-        * Si dice "Java Developer", busca CV con "Java" en el nombre
-        * Si dice ".NET Developer", busca CV con "NET" o ".NET" en el nombre
-        * Si dice "Python Developer", busca CV con "Python" en el nombre
-      
-      PASO 1 - BÚSQUEDA EN LISTA INICIAL:
-      - En la lista de CVs disponibles inicial:
-        * Busca el que contenga la palabra clave de la tecnología en su nombre de archivo
-        * Selecciona ese CV específico (no el primero o más reciente)
-        * Si no hay coincidencia exacta, selecciona el más general/completo. Pero siempre verifica todos los curriculums disponibles.
-        * Si encuentra el CV: Ir a PASO 3
-      
-      PASO 2 - EXPANDIR LISTA SI NO ENCONTRASTE:
-      - Si NO encontraste el CV en la lista inicial:
-        * Busca el botón que dice "Mostrar X curriculums más" o "Show more CVs"
-        * Haz clic en ese botón para expandir la lista
-        * Una nueva lista más grande se desplegará
-        * Busca nuevamente el CV con la palabra clave de la tecnología
-        * Cuando lo encuentres, continúa a PASO 3
-      
-      PASO 3 - SELECCIONAR EL CV CORRECTO:
-      - IMPORTANTE - BOTÓN CORRECTO:
-        * Cada CV en la lista tiene DOS BOTONES: uno para DESCARGAR y otro para SELECCIONAR
-        * NO hagas clic en el botón de DESCARGAR (Download)
-        * Haz clic en el botón de SELECCIONAR (Select / Choose / Use this CV)
-        * El botón de seleccionar generalmente está a la derecha o tiene un icono de check/confirmación
-      - Confirma la selección del CV apropiado
+   A. COMPARACIÓN DE PLANTILLA CV:
 
-   B. RESPUESTA DE PREGUNTAS:
-      Si la plaza hace preguntas adicionales:
-      - Lee cada pregunta cuidadosamente
-      - Si pregunta sobre años de experiencia:
-        * Si pide N años, responde: N+1 o N+2 años (varía ligeramente)
-        * Ejemplo: Si pide 4 años en Java, responde "5 años" o "6 años"
-      - Si pregunta sobre skills específicos: confirma que tienes el skill
-      - Si pregunta sobre disponibilidad: responde "Disponible inmediatamente"
-      - Si pregunta sobre salario: responde "Flexible/Negotiable" o un rango realista
-      - Responde de forma coherente con la oferta y tu CV
-      - Mantén respuestas breves y profesionales
+      PASO 1 - MODIFICACION DE CVs:
+      - Ve a https://www.docs.google.com
+      - Busca en la lista de documentos, el CV que contiene la palabra clave de la primera tecnología de la lista
+      - Abre el documento.
 
-   C. ENVIO DE APLICACIÓN:
-      - Una vez respondidas todas las preguntas (si las hay)
-      - Presiona el botón "Submit" o "Send Application"
-      - Espera confirmación de que la aplicación se envió
+      PASO 2 - COMPARACIÓN DE CVs:
+      - Lee el documento, analizalo y comparalo con ofertas que recopilaste en la busqueda.
+      - Si la oferta requiere habilidades o experiencia que el CV no tiene, crear una copia del CV en Archivo > Hacer una copia. La copia debe tener en el titulo: "CV_tecnologia_oferta", tecnologia es la tecnologia que se busca y la oferta es la oferta que se aplica.
+      - Si al CV le hace falta alguna habilidad o experiencia que la oferta requiere, agrega esa habilidad en el nuevo archivo y en alguna parte del CV, procurando que se vea bonito y ordenado.
+      - Si el CV ya cumple con los requisitos de la oferta, no es necesario hacer una copia, se puede usar el mismo CV.
+      - Descarga el CV modificado en formato PDF. (Archivo > Descargar > Documento PDF (.pdf))
+      - Realiza este proceso para cada oferta de la primera tecnologia.
 
-FASE 4: REGISTRO Y RECOPILACIÓN
-- Para cada aplicación exitosa, registra:
-  * URL de la oferta
-  * Nombre de la empresa
-  * Título del puesto
-  * Estado: "Aplicado"
+      IMPORTANTE: 
+        - Repite el PASO 1 y PASO 2 para cada tecnologia en la lista, asegurandote de crear copias del CV para cada oferta que lo requiera.
+        - Memoriza los nombres de los archivos de CVS que has creado.
 
-FASE 5: DETECCIÓN DE FIN DE TECNOLOGÍA Y CAMBIO A LA SIGUIENTE
-- Continúa scrolleando hacia abajo en los resultados de búsqueda
-- Si NO hay más ofertas nuevas después de scrollear (se repiten las que ya viste):
-  * Has completado TODAS las ofertas para esta tecnología
-  * Registra el conteo total de aplicaciones para esta tecnología
-  * SI HAY MÁS TECNOLOGÍAS EN LA LISTA: Vuelve a FASE 1 con la SIGUIENTE tecnología (en la misma ventana)
-  * SI NO HAY MÁS TECNOLOGÍAS: Ve a RECOLECCIÓN FINAL
-- Si hay más ofertas: Vuelve a FASE 2
-
-RECOLECCIÓN FINAL (AL COMPLETAR TODAS LAS TECNOLOGÍAS):
-Al terminar la última tecnología:
-
-1. Abre la página de resultados:
-   - Ve a: http://127.0.0.1:8080/results/{session_id}
-   - Espera a que cargue completamente la página
-
-2. IMPORTANTE - INGRESAR DATOS EN EL FORMULARIO VISIBLE:
-   - Encontrarás un área de texto grande (textarea) etiquetada como "Aplicaciones (una por línea):"
-   - Haz clic en ese textarea para enfocarlo
-   - Escribe cada aplicación en el siguiente formato (una por línea):
-   
-   Formato EXACTO: URL | Empresa | Título del Puesto
-   
-   Ejemplo completo (copia este formato exacto):
-   https://linkedin.com/jobs/123456 | Acme Corp | Python Developer
-   https://linkedin.com/jobs/789012 | TechCo Inc | Senior Java Developer
-   https://linkedin.com/jobs/345678 | DataSys | .NET Developer
-
-3. DESPUÉS DE ESCRIBIR TODOS LOS DATOS:
-   - Localiza el botón azul que dice "Guardar Aplicaciones" (tiene un icono de disco)
-   - Haz clic en ese botón
-   - Espera a que se confirme (verás un mensaje de éxito)
-   - Los datos se guardarán automáticamente en la base de datos
-
-4. DETALLES CRÍTICOS:
-   - NUNCA incluyas líneas vacías entre aplicaciones
-   - Asegúrate de usar el separador | (pipe/barra vertical) entre URL, Empresa y Título
-   - La URL debe ser la URL COMPLETA de la oferta en LinkedIn
-   - El nombre de la empresa y título deben ser exactos
-   - Si una aplicación tiene caracteres especiales, mantenlos
-   - Una aplicación por línea, sin excepciones
-   
-5. VALIDACIÓN FINAL:
-   - Podrás ver el historial de todas tus aplicaciones en: http://127.0.0.1:8080/historial
+ 
 
 NOTAS IMPORTANTES:
+- Si el proceso es largo, no importa, no debes parar el proceso, ni resumirlo, debes seguir el flujo hasta terminar y llegar al final de la tarea.
 - BÚSQUEDA LIMITADA A ESPAÑA ÚNICAMENTE
 - Si no hay ofertas en Tech 1 o 2: Pasa a la siguiente sin hacer nada
 - Si no hay ofertas en la ÚLTIMA tecnología: TERMINA TODO EL PROCESO
@@ -365,8 +294,6 @@ NOTAS IMPORTANTES:
 - NO hagas pausas largas entre acciones, sé ágil en las interacciones
 
 VALIDACIÓN:
-- Asegúrate de que las aplicaciones se enviaron correctamente
-- Verifica que recibas confirmación de cada aplicación
 - Si la página no carga, reintenta
 - Proporciona el conteo total de aplicaciones enviadas (por cada tecnología)
 - Confirma cuando completes TODAS las tecnologías: {technologies_str}

@@ -34,10 +34,32 @@ def init_db():
         )
     """)
     print("DEBUG DB: Tabla aplicaciones OK")
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS aplicaciones_vacantes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nombre_archivo TEXT NOT NULL,
+            hora_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+    print("DEBUG DB: Tabla aplicaciones_vacantes OK")
     
     conn.commit()
     conn.close()
     print("DEBUG DB: Base de datos inicializada correctamente")
+
+
+def insertar_aplicacion_vacante(nombre_archivo: str):
+    """Guarda el nombre de un CV generado en la base de datos."""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO aplicaciones_vacantes (nombre_archivo) VALUES (?)",
+        (nombre_archivo,)
+    )
+    conn.commit()
+    conn.close()
+
 
 def create_session() -> str:
     """Crea una nueva sesión única"""
